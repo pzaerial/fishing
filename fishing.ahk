@@ -113,8 +113,9 @@ WaitForSlackLine() {
 }
 
 IsLineSlack() {
-	ImageSearch, OutputVarX, OutputVarY, 0, 0, A_ScreenWidth, A_ScreenHeight, fishinglowtension.PNG
-    if(OutputVarX > 0){
+	ImageSearch, lowTensionX1, lowTensionY1, 0, 0, A_ScreenWidth, A_ScreenHeight, fishinglowtension.PNG
+	ImageSearch, lowTensionX2, lowTensionY2, 0, 0, A_ScreenWidth, A_ScreenHeight, fishinglowtension2.PNG
+    if(lowTensionX1 > 0 or lowTensionX2 > 0){
    	    return 1
    	} else {
    	    return 0
