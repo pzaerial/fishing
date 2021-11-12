@@ -85,7 +85,7 @@ ReelRod() {
 		if(isKeyDown = 1){
 			curTime := A_TickCount
 			elapsedTime := curTime - lastReelStartTime
-			if(elapsedTime > 1000 + (reelTimes * 15)) {
+			if(elapsedTime > 1500 + (reelTimes * 15)) {
 				MouseClick, left,,, 1, 0, U
 				isKeyDown := 0
 				WaitForSlackLine()
@@ -106,7 +106,7 @@ WaitForSlackLine() {
 	elapsedtime := 0
 	Loop {
 		elapsedTime := A_TickCount - startTime
-		if(IsLineSlack() = 1 or elapsedTime > 10000){
+		if(IsLineSlack() = 1 or elapsedTime > 3000){
 			return 	
 		}
 	}
@@ -136,33 +136,37 @@ DoCleanupActions() {
 	MouseClick, left,,, 1, 0, U
 
 	; Exit Fishing Mode
-	sleep, 3000
+	sleep, 3005
 	MouseClick, right
-	sleep, 500
+	sleep, 100
 	MouseClick, right
-	sleep, 500
+	sleep, 97
 	MouseClick, right
-	sleep, 500
+	sleep, 105
 	MouseClick, right
-	sleep, 500
+	sleep, 89
 
 	; afk kick prevention with wasd
+	Random, fwdBackSleepTime1, 50, 100
+	Random, leftRightSleepTime1, 25, 75
+	Random, fwdBackSleepTime2, 50, 100
+	Random, leftRightSleepTime2, 25, 75
 	Send, {w down}
-	sleep 250
+	sleep fwdBackSleepTime1
 	Send, {d down}
-	sleep 50
+	sleep leftRightSleepTime1
 	Send, {w up}
-	sleep 50
+	sleep fwdBackSleepTime2
 	Send, {d up}
-	sleep 250
+	sleep leftRightSleepTime2
 	Send, {s down}
-	sleep 250
+	sleep fwdBackSleepTime1
 	Send, {a down}
-	sleep 50
+	sleep leftRightSleepTime1
 	Send, {s up}
-	sleep 50
+	sleep fwdBackSleepTime2
 	Send, {a up}
-	sleep 250
+	sleep leftRightSleepTime2
 
 	sleep, 2000 
 }
